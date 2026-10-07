@@ -74,7 +74,12 @@ export function loadSettings(): SettingsState {
   const model = sanitizeModel(rawModel);
 
   let backendUrl = getStoredItem(STORAGE_KEYS.BACKEND_URL);
-  if (!backendUrl || backendUrl.includes("localhost") || backendUrl.includes("127.0.0.1")) {
+  if (
+    !backendUrl ||
+    backendUrl.includes("localhost") ||
+    backendUrl.includes("127.0.0.1") ||
+    backendUrl.includes("16.192.57.235")
+  ) {
     backendUrl = DEFAULT_API_BASE_URL;
     setStoredItem(STORAGE_KEYS.BACKEND_URL, backendUrl);
   }

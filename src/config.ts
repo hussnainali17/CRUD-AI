@@ -2,8 +2,8 @@
  * Configuration defaults for Ilm Web App.
  */
 
-// Deployed AWS Backend URL
-export const DEFAULT_API_BASE_URL = "http://16.192.57.235:8000";
+// Default Ngrok Backend URL
+export const DEFAULT_API_BASE_URL = "https://choosy-commute-decent.ngrok-free.dev";
 
 export const MODEL_PRESETS = [
   { label: "Gemini 3.5 Flash Lite", value: "gemini/gemini-3.5-flash-lite", provider: "Gemini" },

@@ -11,7 +11,7 @@ function sanitizeUrl(baseUrl: string): string {
     url = url.slice(0, -1);
   }
   if (!url.startsWith("http://") && !url.startsWith("https://")) {
-    url = `http://${url}`;
+    url = `https://${url}`;
   }
   return url;
 }
@@ -47,6 +47,7 @@ export async function sendChatMessage(
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+        "ngrok-skip-browser-warning": "true",
       },
       body: JSON.stringify(payload),
       signal: controller.signal,
@@ -76,7 +77,7 @@ export async function sendChatMessage(
     const message = error.message || "Network error";
     if (message.includes("Failed to fetch") || message.includes("NetworkError")) {
       throw new Error(
-        `Unable to reach backend at ${root}. Please ensure the FastAPI server is running on http://localhost:8000.`
+        `Unable to reach backend at ${root}. Please ensure the server is running and accessible.`
       );
     }
     throw error;
@@ -113,6 +114,7 @@ export async function fetchTasks(baseUrl: string): Promise<Task[]> {
       method: "GET",
       headers: {
         Accept: "application/json",
+        "ngrok-skip-browser-warning": "true",
       },
     });
 
@@ -140,6 +142,7 @@ export async function updateTaskStatus(baseUrl: string, taskId: number, newStatu
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
+      "ngrok-skip-browser-warning": "true",
     },
     body: JSON.stringify({ status: newStatus }),
   });
@@ -159,6 +162,7 @@ export async function deleteTask(baseUrl: string, taskId: number): Promise<void>
     method: "DELETE",
     headers: {
       Accept: "application/json",
+      "ngrok-skip-browser-warning": "true",
     },
   });
 
