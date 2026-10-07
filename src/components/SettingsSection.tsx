@@ -93,7 +93,7 @@ export const SettingsSection: React.FC<Props> = ({ settings, onSettingsChange })
                 className="form-input"
                 value={settings.backendUrl}
                 onChange={(e) => handleFieldChange('backendUrl', e.target.value)}
-                placeholder="http://localhost:8000"
+                placeholder="http://16.192.57.235:8000"
               />
               <button
                 type="button"
@@ -105,7 +105,7 @@ export const SettingsSection: React.FC<Props> = ({ settings, onSettingsChange })
                 <span>Default</span>
               </button>
             </div>
-            <p className="form-hint">FastAPI server runs on http://localhost:8000</p>
+            <p className="form-hint">Deployed AWS backend: <code>http://16.192.57.235:8000</code></p>
           </div>
 
           {/* Model Presets & Input */}

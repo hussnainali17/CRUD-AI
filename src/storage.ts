@@ -73,7 +73,11 @@ export function loadSettings(): SettingsState {
   const rawModel = getStoredItem(STORAGE_KEYS.MODEL) || MODEL_PRESETS[0].value;
   const model = sanitizeModel(rawModel);
 
-  const backendUrl = getStoredItem(STORAGE_KEYS.BACKEND_URL) || DEFAULT_API_BASE_URL;
+  let backendUrl = getStoredItem(STORAGE_KEYS.BACKEND_URL);
+  if (!backendUrl || backendUrl.includes("localhost") || backendUrl.includes("127.0.0.1")) {
+    backendUrl = DEFAULT_API_BASE_URL;
+    setStoredItem(STORAGE_KEYS.BACKEND_URL, backendUrl);
+  }
 
   // Persist updated values so outdated models are permanently updated
   setStoredItem(STORAGE_KEYS.MODEL, model);
